@@ -190,23 +190,18 @@ NativeAppEventEmitter.addListener("observeRecentContact",(data)=>{
 ```
 #### 推送(推送配置参考官方文档即可)
 ```
-//程序运行时获取的推送点击事件
-NativeAppEventEmitter.addListener("observeLaunchPushEvent",(data)=>{
-  console.log(data);
-})；
-//程序后台时获取的推送点击事件
-NativeAppEventEmitter.addListener("observeBackgroundPushEvent",(data)=>{
-  console.log(data); 
-})；
-//推送数据格式
-{
-    ...
-    sessionBody：{
-        sessionId:"",
-        sessionType:"",
-        sessionName:""
-    }
-}
+//进入聊天室
+NimSession.enterChatRoom(roomId).then(res => {
+            console.log('进入网易YXIN聊天室成功 roomId:', roomId, 'res:', res)
+        })
 
+//退出聊天室
+NimSession.quitChatRoom(roomId).then(res => {
+            console.log('离开网易YXIN聊天室 roomId:', roomId, 'res:', res)
+        })
+
+NativeAppEventEmitter.addListener("observeOnRecvMessages", (data) => {
+console.log(data); //聊天室信息
+}
 ```
 
